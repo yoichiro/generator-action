@@ -1,0 +1,19 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "npm run lint && tsc",
+    "deploy": "npm run build && gcloud functions deploy fulfullment --source . --trigger-http --runtime nodejs8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "actions-on-google": "^2.6.0",
+    "firebase-admin": "~7.0.0",
+    "firebase-functions": "~2.2.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.13.1",
+    "typescript": "^3.2.4"
+  },
+  "private": true
+}

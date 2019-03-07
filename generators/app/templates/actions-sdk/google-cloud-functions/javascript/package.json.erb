@@ -1,0 +1,14 @@
+{
+  "name": "functions",
+  "scripts": {
+    "update-action": "gactions update --action_package action.json --project <%= actionProjectId %>",
+    "deploy": "gcloud functions deploy fulfullment --source . --trigger-http --runtime nodejs8"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "actions-on-google": "^2.6.0",
+    "firebase-admin": "~7.0.0",
+    "firebase-functions": "~2.2.0"
+  },
+  "private": true
+}

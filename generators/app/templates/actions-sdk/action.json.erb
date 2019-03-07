@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "myFulfillment"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "Talk to <%= actionName %>"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "myFulfillment": {
+      "name": "myFulfillment",
+      "url": "<YOUR_FULFILLMENT_URL>",
+      "fulfillmentApiVersion": 2
+    }
+  },
+  "locale": "en"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "generator-action",
+    "version": "0.1.0",
+    "description": "Yeoman Generator for action of Google Assistant",
+    "files": [
+        "generators"
+    ],
+    "keywords": [
+        "yeoman-generator"
+    ],
+    "dependencies": {
+        "yeoman-generator": "^3.2.0"
+    }
+}
