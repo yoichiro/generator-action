@@ -9,6 +9,7 @@
         "yeoman-generator"
     ],
     "dependencies": {
+        "command-exists": "^1.2.8",
         "yeoman-generator": "^3.2.0",
         "yosay": "^2.0.2"
     }

@@ -1,5 +1,6 @@
 const Generator = require('yeoman-generator');
 const yosay = require('yosay');
+const commandExists = require('command-exists').sync;
 const config = require('./config');
 
 module.exports = class extends Generator {
@@ -133,6 +134,26 @@ module.exports = class extends Generator {
     }
   }
 
+  install() {
+    if (!this.options['skip-install']) {
+      if (this.answers.cloudService === 'Firebase Functions' ||
+          this.answers.cloudService === 'Google Cloud Functions') {
+        const hasYarn = commandExists('yarn');
+        const hasNpm = commandExists('npm');
+        const cwd = this.answers.cloudService === 'Firebase Functions' ? 'functions' : '.';
+        if (hasYarn) {
+          this.spawnCommand('yarn', ['install'], { cwd });
+        } else {
+          if (hasNpm) {
+            this.spawnCommand('npm', ['install'], { cwd });
+          }
+        }
+      }
+    }
+  }
+
+  // Private methods
+
   _copyFile(templatePath, destinationPath, options) {
     const _options = options || {};
     this.fs.copyTpl(
@@ -252,7 +273,7 @@ module.exports = class extends Generator {
       'functions/tslint.json'
     );
     this._copyFile(
-      'typescript.index.ts',
+      'dialogflow.typescript.index.ts',
       'functions/src/index.ts'
     );
   }
