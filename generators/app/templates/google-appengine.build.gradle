@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.+'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+dependencies {
+    compile 'com.google.appengine:appengine-api-1.0-sdk:+'
+    compile group: 'com.google.actions', name: 'actions-on-google', version: '1.0.+'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+appengine {
+    deploy {
+    }
+}
+
+group = '<%= packageName %>'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
