@@ -20,22 +20,17 @@ module.exports = class extends Generator {
         choices: [
           'Firebase Functions',
           'Google Cloud Functions',
-          'Google AppEngine',
-          'Azure Functions',
-          'Azure App Service'
+          'Google AppEngine'
         ]
       }
     ]);
     const languages = [];
     if (this.answers.cloudService === 'Firebase Functions' ||
-        this.answers.cloudService === 'Google Cloud Functions' ||
-        this.answers.cloudService === 'Azure Functions' ||
-        this.answers.cloudService === 'Azure App Service') {
+        this.answers.cloudService === 'Google Cloud Functions') {
       languages.push('JavaScript');
       languages.push('TypeScript');
     }
-    if (this.answers.cloudService === 'Google AppEngine' ||
-        this.answers.cloudService === 'Azure App Service') {
+    if (this.answers.cloudService === 'Google AppEngine') {
       languages.push('Java');
     }
     if (languages.length > 1) {
