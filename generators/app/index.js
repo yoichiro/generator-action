@@ -104,68 +104,68 @@ module.exports = class extends Generator {
 
   _writeForDialogflowGoogleCloudFunctionsTypescript() {
     this.fs.copyTpl(
-      this.templatePath('dialogflow/google-cloud-functions/typescript/package.json.erb'),
+      this.templatePath('dialogflow.google-cloud-functions.typescript.package.json'),
       this.destinationPath('package.json')
     );
     this.fs.copyTpl(
-      this.templatePath('typescript/tsconfig.json'),
+      this.templatePath('typescript.tsconfig.json'),
       this.destinationPath('tsconfig.json')
     );
     this.fs.copyTpl(
-      this.templatePath('typescript/tslint.json'),
+      this.templatePath('typescript.tslint.json'),
       this.destinationPath('tslint.json')
     );
     this.fs.copyTpl(
-      this.templatePath('dialogflow/typescript/index.ts'),
+      this.templatePath('dialogflow.typescript.index.ts'),
       this.destinationPath('src/index.ts')
     );
   }
 
   _writeForDialogflowGoogleCloudFunctionsJavascript() {
     this.fs.copyTpl(
-      this.templatePath('dialogflow/google-cloud-functions/javascript/package.json.erb'),
+      this.templatePath('dialogflow.google-cloud-functions.javascript.package.json'),
       this.destinationPath('package.json')
     );
     this.fs.copyTpl(
-      this.templatePath('dialogflow/javascript/index.js'),
+      this.templatePath('dialogflow.javascript.index.js'),
       this.destinationPath('index.js')
     );
   }
 
   _writeForDialogflowFirebaseFunctionsJavascript() {
     this.fs.copyTpl(
-      this.templatePath('firebase-functions/function.json'),
+      this.templatePath('firebase-functions.function.json'),
       this.destinationPath('function.json')
     );
     this.fs.copyTpl(
-      this.templatePath('dialogflow/firebase-functions/javascript/package.json.erb'),
+      this.templatePath('dialogflow.firebase-functions.javascript.package.json'),
       this.destinationPath('functions/package.json')
     );
     this.fs.copyTpl(
-      this.templatePath('dialogflow/javascript/index.js'),
+      this.templatePath('dialogflow.javascript.index.js'),
       this.destinationPath('functions/index.js')
     );
   }
 
   _writeForDialogflowFirebaseFunctionsTypescript() {
     this.fs.copyTpl(
-      this.templatePath('firebae-functions/function.json'),
+      this.templatePath('firebase-functions.function.json'),
       this.destinationPath('function.json')
     );
     this.fs.copyTpl(
-      this.templatePath('dialogflow/firebase-functions/typescript/package.json.erb'),
+      this.templatePath('dialogflow.firebase-functions.typescript.package.json'),
       this.destinationPath('functions/package.json')
     );
     this.fs.copyTpl(
-      this.templatePath('typescript/tsconfig.json'),
+      this.templatePath('typescript.tsconfig.json'),
       this.destinationPath('functions/tsconfig.json')
     );
     this.fs.copyTpl(
-      this.templatePath('typescript/tslint.json'),
+      this.templatePath('typescript.tslint.json'),
       this.destinationPath('functions/tslint.json')
     );
     this.fs.copyTpl(
-      this.templatePath('typescript/index.ts'),
+      this.templatePath('typescript.index.ts'),
       this.destinationPath('functions/src/index.ts')
     );
   }
@@ -174,108 +174,108 @@ module.exports = class extends Generator {
 
   _writeForActionsSdkGoogleCloudFunctionsTypescript() {
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/action.json.erb'),
+      this.templatePath('actions-sdk.action.json'),
       this.destinationPath('action.json'),
       {
         actionName: this.answers.actionName
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/google-cloud-functions/typescript/package.json.erb'),
+      this.templatePath('actions-sdk.google-cloud-functions.typescript.package.json'),
       this.destinationPath('package.json'),
       {
         actionProjectId: this.answers.actionProjectId
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/tsconfig.json'),
+      this.templatePath('actions-sdk.typescript.tsconfig.json'),
       this.destinationPath('tsconfig.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/tslint.json'),
+      this.templatePath('actions-sdk.typescript.tslint.json'),
       this.destinationPath('tslint.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/index.ts'),
+      this.templatePath('actions-sdk.typescript.index.ts'),
       this.destinationPath('src/index.ts')
     );
   }
 
   _writeForActionsSdkGoogleCloudFunctionsJavascript() {
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/action.json.erb'),
+      this.templatePath('actions-sdk.action.json'),
       this.destinationPath('action.json'),
       {
         actionName: this.answers.actionName
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/google-cloud-functions/javascript/package.json.erb'),
+      this.templatePath('actions-sdk.google-cloud-functions.javascript.package.json'),
       this.destinationPath('package.json'),
       {
         actionProjectId: this.answers.actionProjectId
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/javascript/index.js'),
+      this.templatePath('actions-sdk.javascript.index.js'),
       this.destinationPath('index.js')
     );
   }
 
   _writeForActionsSdkFirebaseFunctionsJavascript() {
     this.fs.copyTpl(
-      this.templatePath('firebase-functions/function.json'),
+      this.templatePath('firebase-functions.function.json'),
       this.destinationPath('function.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/action.json.erb'),
+      this.templatePath('actions-sdk.action.json'),
       this.destinationPath('action.json'),
       {
         actionName: this.answers.actionName
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/firebase-functions/javascript/package.json.erb'),
+      this.templatePath('actions-sdk.firebase-functions.javascript.package.json'),
       this.destinationPath('functions/package.json'),
       {
         actionProjectId: this.answers.actionProjectId
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/javascript/index.js'),
+      this.templatePath('actions-sdk.javascript.index.js'),
       this.destinationPath('functions/index.js')
     );
   }
 
   _writeForActionsSdkFirebaseFunctionsTypescript() {
     this.fs.copyTpl(
-      this.templatePath('firebae-functions/function.json'),
+      this.templatePath('firebase-functions.function.json'),
       this.destinationPath('function.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/action.json.erb'),
+      this.templatePath('actions-sdk.action.json'),
       this.destinationPath('action.json'),
       {
         actionName: this.answers.actionName
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/firebase-functions/typescript/package.json.erb'),
+      this.templatePath('actions-sdk.firebase-functions.typescript.package.json'),
       this.destinationPath('functions/package.json'),
       {
         actionProjectId: this.answers.actionProjectId
       }
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/tsconfig.json'),
+      this.templatePath('actions-sdk.typescript.tsconfig.json'),
       this.destinationPath('functions/tsconfig.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/tslint.json'),
+      this.templatePath('actions-sdk.typescript.tslint.json'),
       this.destinationPath('functions/tslint.json')
     );
     this.fs.copyTpl(
-      this.templatePath('actions-sdk/typescript/index.ts'),
+      this.templatePath('actions-sdk.typescript.index.ts'),
       this.destinationPath('functions/src/index.ts')
     );
   }
