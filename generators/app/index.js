@@ -22,14 +22,6 @@ module.exports = class extends Generator {
 
     this.answers = await this.prompt([
       {
-        type: 'input',
-        name: 'projectDirectoryName',
-        message: 'What is your project directory name?',
-        validate: projectDirectoryName => {
-          return projectDirectoryName !== '';
-        }
-      },
-      {
         type: 'list',
         name: 'actionType',
         message: 'Which type do you want to use for your action?',
@@ -145,7 +137,7 @@ module.exports = class extends Generator {
     const _options = options || {};
     this.fs.copyTpl(
       this.templatePath(templatePath),
-      this.destinationPath(`${this.answers.projectDirectoryName}/${destinationPath}`),
+      this.destinationPath(destinationPath),
       _options
     );
   }
