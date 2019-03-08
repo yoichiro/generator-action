@@ -1,8 +1,25 @@
 const Generator = require('yeoman-generator');
+const yosay = require('yosay');
+const config = require('./config');
 
 module.exports = class extends Generator {
 
+  constructor(args, opts) {
+    super(args, opts);
+    for (let optionName in config.options) {
+      this.option(optionName, config.options[optionName]);
+    }
+  }
+
   async prompting() {
+    if (!this.options['skip-welcome-message']) {
+      this.log(
+        yosay(
+          "'Allo 'allo! Out of the box I include a build file, source files and other necessary files to build your action for Google Assistant."
+        )
+      );
+    }
+
     this.answers = await this.prompt([
       {
         type: 'input',
