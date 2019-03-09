@@ -6,6 +6,8 @@ Action Fulfillment Code Project for Google Assistant Generator creates everythin
 * Cloud Service: Firebase Functions, Google Cloud Functions or Google AppEngine.
 * Language: JavaScript, TypeScript or Java.
 
+[![NPM Version](https://img.shields.io/npm/v/generator-action.svg)](https://www.npmjs.org/package/generator-action)
+
 ## Getting Started
 
 ```bash
