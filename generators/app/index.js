@@ -142,14 +142,59 @@ module.exports = class extends Generator {
         const hasNpm = commandExists('npm');
         const cwd = this.answers.cloudService === 'Firebase Functions' ? 'functions' : '.';
         if (hasYarn) {
-          this.spawnCommand('yarn', ['install'], { cwd });
+          this.log.invoke('Execute `yarn install`');
+          this.spawnCommandSync('yarn', ['install'], { cwd });
         } else {
           if (hasNpm) {
-            this.spawnCommand('npm', ['install'], { cwd });
+            this.log.invoke('Execute `npm install`');
+            this.spawnCommandSync('npm', ['install'], { cwd });
           }
         }
       }
     }
+  }
+
+  end() {
+    if (this.options['skip-instruction-message']) {
+      return;
+    }
+    this.log.ok('All files have been generated.');
+    const messages = [];
+    if (this.answers.cloudService === 'Firebase Functions') {
+      messages.push('');
+      messages.push('[Deploying Your Fulfillment]');
+      messages.push('To deploy your fulfillment, do the following:');
+      messages.push('1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`');
+      messages.push('2) Execute: `cd functions`');
+      messages.push('3) Execute to deploy: `npm run deploy` or `yarn deploy`');
+    }
+    if (this.answers.cloudService === 'Google Cloud Functions') {
+      messages.push('');
+      messages.push('[Deploying Your Fulfillment]');
+      messages.push('To deploy your fulfillment, do the following:');
+      messages.push('1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`');
+      messages.push('2) Execute to deploy: `npm run deploy` or `yarn deploy`');
+    }
+    if (this.answers.cloudService === 'Google AppEngine') {
+      messages.push('');
+      messages.push('[Deploying Your Fulfillment]');
+      messages.push('To deploy your fulfillment, do the following:');
+      messages.push('1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`');
+      messages.push('2) Execute to build: `gradle war`');
+      messages.push('3) Execute to deploy: `gradle appengineDeploy`');
+    }
+    if (this.answers.actionType === 'Actions SDK') {
+      messages.push('');
+      messages.push('[Registering Your Action Package]');
+      messages.push('To register your action package to Actions on Google, do the following:');
+      messages.push('1) Replace the <YOUR_FULFILLMENT_URL> with yours in action.json file.');
+      messages.push('2) Execute: `gactions update --action_package action.json --project <YOUR_ACTION_PROJECT_ID>`');
+    }
+    messages.forEach(message => {
+      this.log(message);
+    });
+    this.log.writeln();
+    this.log('Have fun!');
   }
 
   // Private methods

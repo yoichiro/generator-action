@@ -15,6 +15,9 @@ $ npm install -g yo
 # Install generator-action
 $ npm install -g generator-action
 
+# Make a project directory
+$ mkdir <PROJECT_DIRECTORY_NAME>; cd <PROJECT_DIRECTORY_NAME>
+
 # Invoke the generator with yo command
 $ yo action
 ```
