@@ -1,13 +1,13 @@
 {
     "name": "generator-action",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Yeoman Generator to generate your fulfillment code project for actions of Google Assistant",
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com/yoichiro/generator-action.git"
     },
     "author": "Yoichiro Tanaka <yoichiro6642@gmail.com> (https://github.com/yoichiro)",
-    "license": "Apache-2.0",
+    "license": "BSD",
     "bugs": {
         "url": "https://github.com/yoichiro/generator-action/issues",
         "email": "yoichiro6642@gmail.com"
