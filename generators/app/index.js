@@ -180,8 +180,8 @@ module.exports = class extends Generator {
       messages.push('[Deploying Your Fulfillment]');
       messages.push('To deploy your fulfillment, do the following:');
       messages.push('1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`');
-      messages.push('2) Execute to build: `gradle war`');
-      messages.push('3) Execute to deploy: `gradle appengineDeploy`');
+      messages.push('2) Execute to build: `gradlew war`');
+      messages.push('3) Execute to deploy: `gradlew appengineDeploy`');
     }
     if (this.answers.actionType === 'Actions SDK') {
       messages.push('');

@@ -2,14 +2,14 @@ package <%= packageName %>;
 
 import com.google.actions.api.ActionRequest;
 import com.google.actions.api.ActionResponse;
-import com.google.actions.api.DialogflowApp;
+import com.google.actions.api.ActionsSdkApp;
 import com.google.actions.api.ForIntent;
 import com.google.actions.api.response.ResponseBuilder;
 
-public class FulfillmentApp extends DialogflowApp {
+public class FulfillmentApp extends ActionsSdkApp {
 
-    @ForIntent("Default Welcome Intent")
-    public ActionResponse welcome(ActionRequest request) {
+    @ForIntent("actions.intent.MAIN")
+    public ActionResponse main(ActionRequest request) {
         ResponseBuilder builder = getResponseBuilder(request);
         builder.add("Hello, world!");
         return builder.build();
