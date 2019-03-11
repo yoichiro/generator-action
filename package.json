@@ -1,6 +1,6 @@
 {
     "name": "generator-action",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Yeoman Generator to generate your fulfillment code project for actions of Google Assistant",
     "repository": {
         "type": "git",

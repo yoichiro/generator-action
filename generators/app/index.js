@@ -393,11 +393,11 @@ module.exports = class extends Generator {
       }
     );
     this._copyFile(
-      'actions-sdk.typescript.tsconfig.json',
+      'typescript.tsconfig.json',
       'tsconfig.json'
     );
     this._copyFile(
-      'actions-sdk.typescript.tslint.json',
+      'typescript.tslint.json',
       'tslint.json'
     );
     this._copyFile(
