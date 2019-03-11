@@ -7,6 +7,7 @@ Action Fulfillment Code Project for Google Assistant Generator creates everythin
 * Language: JavaScript, TypeScript or Java.
 
 [![NPM Version](https://img.shields.io/npm/v/generator-action.svg)](https://www.npmjs.org/package/generator-action)
+[![CircleCI](https://circleci.com/gh/yoichiro/generator-action.svg?style=svg)](https://circleci.com/gh/yoichiro/generator-action)
 
 ## Getting Started
 
