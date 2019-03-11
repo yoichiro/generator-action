@@ -1,6 +1,6 @@
 {
     "name": "generator-action",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "description": "Yeoman Generator to generate your fulfillment code project for actions of Google Assistant",
     "repository": {
         "type": "git",
@@ -20,12 +20,18 @@
         "yeoman-generator"
     ],
     "scripts": {
-        "package": "yarn pack",
-        "release": "yarn publish"
+        "test": "mocha",
+        "package": "yarn test && yarn pack",
+        "release": "yarn test && yarn publish"
     },
     "dependencies": {
         "command-exists": "^1.2.8",
         "yeoman-generator": "^3.2.0",
         "yosay": "^2.0.2"
+    },
+    "devDependencies": {
+        "mocha": "^6.0.2",
+        "yeoman-assert": "^3.1.1",
+        "yeoman-test": "^1.9.1"
     }
 }
