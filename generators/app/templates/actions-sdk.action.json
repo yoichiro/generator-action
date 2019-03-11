@@ -6,12 +6,7 @@
         "conversationName": "myFulfillment"
       },
       "intent": {
-        "name": "actions.intent.MAIN",
-        "trigger": {
-          "queryPatterns": [
-            "Talk to <%= actionName %>"
-          ]
-        }
+        "name": "actions.intent.MAIN"
       }
     }
   ],
