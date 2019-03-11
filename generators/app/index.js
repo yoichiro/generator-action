@@ -64,14 +64,6 @@ module.exports = class extends Generator {
       this.answers.language = languages[0]
     }
     if (this.answers.actionType === 'Actions SDK') {
-      Object.assign(this.answers, await this.prompt([
-        {
-          type: 'input',
-          name: 'actionName',
-          message: 'What is your action name?',
-          default: '__TODO:YOUR_ACTION_NAME__'
-        }
-      ]));
       if (this.answers.cloudService === 'Firebase Functions' ||
           this.answers.cloudService === 'Google Cloud Functions') {
         Object.assign(this.answers, await this.prompt([
@@ -328,10 +320,7 @@ module.exports = class extends Generator {
   _writeForActionsSdkGoogleAppEngineJava() {
     this._copyFile(
       'actions-sdk.action.json',
-      'action.json',
-      {
-        actionName: this.answers.actionName
-      }
+      'action.json'
     );
     this._copyFile(
       'google-appengine.gradlew.bat',
@@ -380,10 +369,7 @@ module.exports = class extends Generator {
   _writeForActionsSdkGoogleCloudFunctionsTypescript() {
     this._copyFile(
       'actions-sdk.action.json',
-      'action.json',
-      {
-        actionName: this.answers.actionName
-      }
+      'action.json'
     );
     this._copyFile(
       'actions-sdk.google-cloud-functions.typescript.package.json',
@@ -409,10 +395,7 @@ module.exports = class extends Generator {
   _writeForActionsSdkGoogleCloudFunctionsJavascript() {
     this._copyFile(
       'actions-sdk.action.json',
-      'action.json',
-      {
-        actionName: this.answers.actionName
-      }
+      'action.json'
     );
     this._copyFile(
       'actions-sdk.google-cloud-functions.javascript.package.json',
@@ -434,10 +417,7 @@ module.exports = class extends Generator {
     );
     this._copyFile(
       'actions-sdk.action.json',
-      'action.json',
-      {
-        actionName: this.answers.actionName
-      }
+      'action.json'
     );
     this._copyFile(
       'actions-sdk.firebase-functions.javascript.package.json',
@@ -459,10 +439,7 @@ module.exports = class extends Generator {
     );
     this._copyFile(
       'actions-sdk.action.json',
-      'action.json',
-      {
-        actionName: this.answers.actionName
-      }
+      'action.json'
     );
     this._copyFile(
       'actions-sdk.firebase-functions.typescript.package.json',
