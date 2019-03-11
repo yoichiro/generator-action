@@ -3,7 +3,7 @@
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "npm run lint && tsc",
-    "deploy": "npm run build && gcloud functions deploy fulfullment --source . --trigger-http --runtime nodejs8"
+    "deploy": "npm run build && gcloud functions deploy fulfillment --source . --trigger-http --runtime nodejs8"
   },
   "main": "lib/index.js",
   "dependencies": {
