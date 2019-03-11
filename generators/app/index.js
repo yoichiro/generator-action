@@ -229,7 +229,7 @@ module.exports = class extends Generator {
     const packageName = this.answers.packageName.replace(/\./g, '/');
     this._copyFile(
       'google-appengine.fulfillment-servlet.java',
-      `src/main/${packageName}/FulfillmentServlet.java`,
+      `src/main/java/${packageName}/FulfillmentServlet.java`,
       {
         packageName: this.answers.packageName
       }
@@ -348,7 +348,7 @@ module.exports = class extends Generator {
     const packageName = this.answers.packageName.replace(/\./g, '/');
     this._copyFile(
       'google-appengine.fulfillment-servlet.java',
-      `src/main/${packageName}/FulfillmentServlet.java`,
+      `src/main/java/${packageName}/FulfillmentServlet.java`,
       {
         packageName: this.answers.packageName
       }
