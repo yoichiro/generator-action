@@ -4,7 +4,7 @@
     "update-action": "gactions update --action_package action.json --project <%= actionProjectId %>",
     "lint": "tslint --project tsconfig.json",
     "build": "npm run lint && tsc",
-    "deploy": "npm run build && gcloud functions deploy fulfullment --source . --trigger-http --runtime nodejs8"
+    "deploy": "npm run build && gcloud functions deploy fulfillment --source . --trigger-http --runtime nodejs8"
   },
   "main": "lib/index.js",
   "dependencies": {

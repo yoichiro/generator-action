@@ -1,7 +1,7 @@
 {
   "name": "functions",
   "scripts": {
-    "deploy": "gcloud functions deploy fulfullment --source . --trigger-http --runtime nodejs8"
+    "deploy": "gcloud functions deploy fulfillment --source . --trigger-http --runtime nodejs8"
   },
   "main": "index.js",
   "dependencies": {
