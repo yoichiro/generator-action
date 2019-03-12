@@ -163,7 +163,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    return;
     if (!this.options['skip-install']) {
       if (this.answers.cloudService === 'Firebase Functions' ||
           this.answers.cloudService === 'Google Cloud Functions') {
