@@ -50,7 +50,7 @@ module.exports = class extends Generator {
       ]));
     }
     const languages = [];
-    if (this.answers.cloudService === 'Multivocal') {
+    if (this.answers.actionType === 'Multivocal') {
       languages.push('JavaScript');
     } else if (this.answers.cloudService === 'Firebase Functions' ||
         this.answers.cloudService === 'Google Cloud Functions') {
