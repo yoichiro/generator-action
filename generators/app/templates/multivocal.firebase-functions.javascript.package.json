@@ -1,0 +1,16 @@
+{
+  "name": "functions",
+  "scripts": {
+    "deploy": "firebase deploy --only functions"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "~7.0.0",
+    "firebase-functions": "~2.2.0",
+    "multivocal": "^0.9.2"
+  },
+  "private": true
+}
