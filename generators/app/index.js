@@ -27,28 +27,36 @@ module.exports = class extends Generator {
         name: 'actionType',
         message: 'Which type do you want to use for your action?',
         choices: [
-          "Actions SDK",
-          "Dialogflow"
-        ]
-      },
-      {
-        type: 'list',
-        name: 'cloudService',
-        message: 'Which cloud service do you want to deploy for your action?',
-        choices: [
-          'Firebase Functions',
-          'Google Cloud Functions',
-          'Google AppEngine'
+          'Actions SDK',
+          'Dialogflow',
+          'Multivocal'
         ]
       }
     ]);
+    if (this.answers.actionType === 'Multivocal') {
+      this.answers.cloudService = 'Firebase Functions';
+    } else {
+      Object.assign(this.answers, await this.prompt([
+        {
+          type: 'list',
+          name: 'cloudService',
+          message: 'Which cloud service do you want to deploy for your action?',
+          choices: [
+            'Firebase Functions',
+            'Google Cloud Functions',
+            'Google AppEngine'
+          ]
+        }
+      ]));
+    }
     const languages = [];
-    if (this.answers.cloudService === 'Firebase Functions' ||
+    if (this.answers.cloudService === 'Multivocal') {
+      languages.push('JavaScript');
+    } else if (this.answers.cloudService === 'Firebase Functions' ||
         this.answers.cloudService === 'Google Cloud Functions') {
       languages.push('JavaScript');
       languages.push('TypeScript');
-    }
-    if (this.answers.cloudService === 'Google AppEngine') {
+    } else if (this.answers.cloudService === 'Google AppEngine') {
       languages.push('Java');
     }
     if (languages.length > 1) {
@@ -122,6 +130,8 @@ module.exports = class extends Generator {
       } else if (this.answers.cloudService === 'Google AppEngine') {
         this._writeForDialogflowGoogleAppEngineJava();
       }
+    } else if (this.answers.actionType === "Multivocal") {
+      this._writeForMultivocalFirebaseFunctionsJavascript();
     }
   }
 
@@ -196,6 +206,30 @@ module.exports = class extends Generator {
       this.templatePath(templatePath),
       this.destinationPath(destinationPath),
       _options
+    );
+  }
+
+  // For Multivocal
+
+  _writeForMultivocalFirebaseFunctionsJavascript() {
+    this._copyFile(
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
+    );
+    this._copyFile(
+      'multivocal.firebase-functions.javascript.package.json',
+      'functions/package.json'
+    );
+    this._copyFile(
+      'multivocal.javascript.index.js',
+      'functions/index.js'
     );
   }
 

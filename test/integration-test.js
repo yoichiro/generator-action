@@ -205,4 +205,22 @@ describe('generators:app', () => {
       });
   });
 
+  it('Multivocal, Firebase Functions, JavaScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Multivocal',
+        'cloudService': 'Firebase Functions',
+        'language': 'JavaScript'
+      })
+      .then(() => {
+        assert.file([
+          'functions/package.json',
+          'functions/index.js',
+          'firebase.json',
+          '.firebaserc'
+        ]);
+      });
+  });
+
 });

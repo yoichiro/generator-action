@@ -2,7 +2,7 @@
 
 Action Fulfillment Code Project for Google Assistant Generator creates everything you need to get started with action development. You can choose the following implementations:
 
-* Action Type: Actions SDK or Dialogflow.
+* Action Type: Actions SDK, Dialogflow or Multivocal.
 * Cloud Service: Firebase Functions, Google Cloud Functions or Google AppEngine.
 * Language: JavaScript, TypeScript or Java.
 
@@ -36,7 +36,7 @@ You can generate a project with a fulfillment code deployed to Firebase Function
 * JavaScript
 * TypeScript
 
-Actually, the generated code depends on the [Actions on Google Client Library for NodeJS](https://github.com/actions-on-google/actions-on-google-nodejs). A different code is generated dependning on your selection from Actions SDK or Dialogflow.
+If Actions SDK or Dialogflow is selected as Action Type, the generated code depends on the [Actions on Google Client Library for NodeJS](https://github.com/actions-on-google/actions-on-google-nodejs). A different code is generated dependning on your selection from Actions SDK or Dialogflow. On the other hand, if Multivocal is selected as Action Type, the generated code depends on the [Multivocal](https://github.com/afirstenberg/multivocal) library.
 
 If Actions SDK is selected, `action.json` Action Package file is generated. It can be used to register actions with `gactions` command.
 
