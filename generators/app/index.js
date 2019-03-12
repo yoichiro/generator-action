@@ -183,35 +183,9 @@ module.exports = class extends Generator {
     }
     this.log.ok('All files have been generated.');
     const messages = [];
-    if (this.answers.cloudService === 'Firebase Functions') {
-      messages.push('');
-      messages.push('[Deploying Your Fulfillment]');
-      messages.push('To deploy your fulfillment, do the following:');
-      messages.push('1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`');
-      messages.push('2) Execute: `cd functions`');
-      messages.push('3) Execute to deploy: `npm run deploy` or `yarn deploy`');
-    }
-    if (this.answers.cloudService === 'Google Cloud Functions') {
-      messages.push('');
-      messages.push('[Deploying Your Fulfillment]');
-      messages.push('To deploy your fulfillment, do the following:');
-      messages.push('1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`');
-      messages.push('2) Execute to deploy: `npm run deploy` or `yarn deploy`');
-    }
-    if (this.answers.cloudService === 'Google AppEngine') {
-      messages.push('');
-      messages.push('[Deploying Your Fulfillment]');
-      messages.push('To deploy your fulfillment, do the following:');
-      messages.push('1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`');
-      messages.push('2) Execute to build: `gradlew war`');
-      messages.push('3) Execute to deploy: `gradlew appengineDeploy`');
-    }
+    messages.concat(config.endMessages[this.answers.cloudService]);
     if (this.answers.actionType === 'Actions SDK') {
-      messages.push('');
-      messages.push('[Registering Your Action Package]');
-      messages.push('To register your action package to Actions on Google, do the following:');
-      messages.push('1) Replace the <YOUR_FULFILLMENT_URL> with yours in action.json file.');
-      messages.push('2) Execute: `gactions update --action_package action.json --project <YOUR_ACTION_PROJECT_ID>`');
+      messages.concat(config.endMessages['Actions SDK']);
     }
     messages.forEach(message => {
       this.log(message);
