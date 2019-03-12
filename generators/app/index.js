@@ -27,32 +27,40 @@ module.exports = class extends Generator {
         name: 'actionType',
         message: 'Which type do you want to use for your action?',
         choices: [
-          'Actions SDK',
-          'Dialogflow',
-          'Multivocal'
+          {
+            name: 'Actions SDK with Actions on Google Client Library',
+            value: 'Actions SDK'
+          },
+          {
+            name: 'Dialogflow with Actions on Google Client Library',
+            value: 'Dialogflow'
+          },
+          {
+            name: 'Dialogflow with Multivocal',
+            value: 'Multivocal'
+          }
         ]
       }
     ]);
+    const cloudServices = [];
     if (this.answers.actionType === 'Multivocal') {
-      this.answers.cloudService = 'Firebase Functions';
+      cloudServices.push('Firebase Functions');
+      cloudServices.push('Google Cloud Functions');
     } else {
-      Object.assign(this.answers, await this.prompt([
-        {
-          type: 'list',
-          name: 'cloudService',
-          message: 'Which cloud service do you want to deploy for your action?',
-          choices: [
-            'Firebase Functions',
-            'Google Cloud Functions',
-            'Google AppEngine'
-          ]
-        }
-      ]));
+      cloudServices.push('Firebase Functions');
+      cloudServices.push('Google Cloud Functions');
+      cloudServices.push('Google AppEngine');
     }
+    Object.assign(this.answers, await this.prompt([
+      {
+        type: 'list',
+        name: 'cloudService',
+        message: 'Which cloud service do you want to deploy for your action?',
+        choices: cloudServices
+      }
+    ]));
     const languages = [];
-    if (this.answers.actionType === 'Multivocal') {
-      languages.push('JavaScript');
-    } else if (this.answers.cloudService === 'Firebase Functions' ||
+    if (this.answers.cloudService === 'Firebase Functions' ||
         this.answers.cloudService === 'Google Cloud Functions') {
       languages.push('JavaScript');
       languages.push('TypeScript');
@@ -131,7 +139,21 @@ module.exports = class extends Generator {
         this._writeForDialogflowGoogleAppEngineJava();
       }
     } else if (this.answers.actionType === "Multivocal") {
-      this._writeForMultivocalFirebaseFunctionsJavascript();
+      if (this.answers.cloudService === 'Firebase Functions') {
+        if (this.answers.language === 'TypeScript') {
+          this._writeForMultivocalFirebaseFunctionsTypescript();
+        } else if (this.answers.language === 'JavaScript') {
+          this._writeForMultivocalFirebaseFunctionsJavascript();
+        }
+      } else if (this.answers.cloudService === 'Google Cloud Functions') {
+        if (this.answers.language === 'TypeScript') {
+          this._writeForMultivocalGoogleCloudFunctionsTypescript();
+        } else if (this.answers.language === 'JavaScript') {
+          this._writeForMultivocalGoogleCloudFunctionsJavascript();
+        }
+      } else if (this.answers.cloudService === 'Google AppEngine') {
+        this._writeForDialogflowGoogleAppEngineJava();
+      }
     }
   }
 
@@ -228,8 +250,68 @@ module.exports = class extends Generator {
       'functions/package.json'
     );
     this._copyFile(
-      'multivocal.javascript.index.js',
+      'multivocal.firebase-functions.javascript.index.js',
       'functions/index.js'
+    );
+  }
+
+  _writeForMultivocalFirebaseFunctionsTypescript() {
+    this._copyFile(
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
+    );
+    this._copyFile(
+      'multivocal.firebase-functions.typescript.package.json',
+      'functions/package.json'
+    );
+    this._copyFile(
+      'typescript.tsconfig.json',
+      'functions/tsconfig.json'
+    );
+    this._copyFile(
+      'typescript.tslint.json',
+      'functions/tslint.json'
+    );
+    this._copyFile(
+      'multivocal.firebase-functions.typescript.index.ts',
+      'functions/src/index.ts'
+    );
+  }
+
+  _writeForMultivocalGoogleCloudFunctionsTypescript() {
+    this._copyFile(
+      'multivocal.google-cloud-functions.typescript.package.json',
+      'package.json'
+    );
+    this._copyFile(
+      'typescript.tsconfig.json',
+      'tsconfig.json'
+    );
+    this._copyFile(
+      'typescript.tslint.json',
+      'tslint.json'
+    );
+    this._copyFile(
+      'multivocal.google-cloud-functions.typescript.index.ts',
+      'src/index.ts'
+    );
+  }
+
+  _writeForMultivocalGoogleCloudFunctionsJavascript() {
+    this._copyFile(
+      'multivocal.google-cloud-functions.javascript.package.json',
+      'package.json'
+    );
+    this._copyFile(
+      'multivocal.google-cloud-functions.javascript.index.js',
+      'index.js'
     );
   }
 

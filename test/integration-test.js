@@ -13,7 +13,7 @@ describe('generators:app', () => {
         'actionType': 'Actions SDK',
         'cloudService': 'Firebase Functions',
         'language': 'JavaScript',
-        'actionProjectId': 'actionProjectId1' 
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -33,7 +33,7 @@ describe('generators:app', () => {
         'actionType': 'Actions SDK',
         'cloudService': 'Firebase Functions',
         'language': 'TypeScript',
-        'actionProjectId': 'actionProjectId1' 
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -55,7 +55,7 @@ describe('generators:app', () => {
         'actionType': 'Actions SDK',
         'cloudService': 'Google Cloud Functions',
         'language': 'JavaScript',
-        'actionProjectId': 'actionProjectId1' 
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -73,7 +73,7 @@ describe('generators:app', () => {
         'actionType': 'Actions SDK',
         'cloudService': 'Google Cloud Functions',
         'language': 'TypeScript',
-        'actionProjectId': 'actionProjectId1' 
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -165,7 +165,7 @@ describe('generators:app', () => {
         'actionType': 'Actions SDK',
         'cloudService': 'Google AppEngine',
         'language': 'Java',
-        'packageName': 'package1.name1' 
+        'packageName': 'package1.name1'
       })
       .then(() => {
         assert.file([
@@ -189,7 +189,7 @@ describe('generators:app', () => {
         'actionType': 'Dialogflow',
         'cloudService': 'Google AppEngine',
         'language': 'Java',
-        'packageName': 'package1.name1' 
+        'packageName': 'package1.name1'
       })
       .then(() => {
         assert.file([
@@ -219,6 +219,60 @@ describe('generators:app', () => {
           'functions/index.js',
           'firebase.json',
           '.firebaserc'
+        ]);
+      });
+  });
+
+  it('Multivocal, Firebase Functions, TypeScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Multivocal',
+        'cloudService': 'Firebase Functions',
+        'language': 'TypeScript'
+      })
+      .then(() => {
+        assert.file([
+          'functions/package.json',
+          'functions/src/index.ts',
+          'functions/tsconfig.json',
+          'functions/tslint.json',
+          'firebase.json',
+          '.firebaserc'
+        ]);
+      });
+  });
+
+  it('Multivocal, Google Cloud Functions, JavaScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Multivocal',
+        'cloudService': 'Google Cloud Functions',
+        'language': 'JavaScript'
+      })
+      .then(() => {
+        assert.file([
+          'package.json',
+          'index.js'
+        ]);
+      });
+  });
+
+  it('Multivocal, Google Cloud Functions, TypeScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Multivocal',
+        'cloudService': 'Google Cloud Functions',
+        'language': 'TypeScript'
+      })
+      .then(() => {
+        assert.file([
+          'package.json',
+          'src/index.ts',
+          'tsconfig.json',
+          'tslint.json'
         ]);
       });
   });
