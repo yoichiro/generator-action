@@ -163,6 +163,7 @@ module.exports = class extends Generator {
   }
 
   install() {
+    return;
     if (!this.options['skip-install']) {
       if (this.answers.cloudService === 'Firebase Functions' ||
           this.answers.cloudService === 'Google Cloud Functions') {
@@ -187,10 +188,10 @@ module.exports = class extends Generator {
       return;
     }
     this.log.ok('All files have been generated.');
-    const messages = [];
-    messages.concat(config.endMessages[this.answers.cloudService]);
+    let messages = [];
+    messages = messages.concat(config.endMessages[this.answers.cloudService]);
     if (this.answers.actionType === 'Actions SDK') {
-      messages.concat(config.endMessages['Actions SDK']);
+      messages = messages.concat(config.endMessages['Actions SDK']);
     }
     messages.forEach(message => {
       this.log(message);
