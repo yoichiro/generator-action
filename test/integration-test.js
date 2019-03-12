@@ -20,7 +20,8 @@ describe('generators:app', () => {
           'functions/package.json',
           'functions/index.js',
           'action.json',
-          'function.json'
+          'firebase.json',
+          '.firebaserc'
         ]);
       });
   });
@@ -41,7 +42,8 @@ describe('generators:app', () => {
           'functions/tsconfig.json',
           'functions/tslint.json',
           'action.json',
-          'function.json'
+          'firebase.json',
+          '.firebaserc'
         ]);
       });
   });
@@ -96,7 +98,8 @@ describe('generators:app', () => {
         assert.file([
           'functions/package.json',
           'functions/index.js',
-          'function.json'
+          'firebase.json',
+          '.firebaserc'
         ]);
       });
   });
@@ -115,7 +118,8 @@ describe('generators:app', () => {
           'functions/src/index.ts',
           'functions/tsconfig.json',
           'functions/tslint.json',
-          'function.json'
+          'firebase.json',
+          '.firebaserc'
         ]);
       });
   });

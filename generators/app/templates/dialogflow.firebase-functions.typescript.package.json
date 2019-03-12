@@ -6,6 +6,9 @@
     "deploy": "firebase deploy --only functions"
   },
   "main": "lib/index.js",
+  "engines": {
+    "node": "8"
+  },
   "dependencies": {
     "actions-on-google": "^2.6.0",
     "firebase-admin": "~7.0.0",
