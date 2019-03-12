@@ -63,18 +63,17 @@ module.exports = class extends Generator {
     } else {
       this.answers.language = languages[0]
     }
-    if (this.answers.actionType === 'Actions SDK') {
-      if (this.answers.cloudService === 'Firebase Functions' ||
-          this.answers.cloudService === 'Google Cloud Functions') {
-        Object.assign(this.answers, await this.prompt([
-          {
-            type: 'input',
-            name: 'actionProjectId',
-            message: 'What is your action\'s project ID?',
-            default: '__TODO:YOUR_ACTION_PROJECT_ID__'
-          }
-        ]));
-      }
+    if (this.answers.cloudService === 'Firebase Functions' ||
+        (this.answers.actionType === 'Actions SDK' &&
+          this.answers.cloudService === 'Google Cloud Functions')) {
+      Object.assign(this.answers, await this.prompt([
+        {
+          type: 'input',
+          name: 'actionProjectId',
+          message: 'What is your project ID?',
+          default: '__TODO:YOUR_PROJECT_ID__'
+        }
+      ]));
     }
     if (this.answers.cloudService === 'Google AppEngine') {
       Object.assign(this.answers, await this.prompt([
@@ -279,8 +278,15 @@ module.exports = class extends Generator {
 
   _writeForDialogflowFirebaseFunctionsJavascript() {
     this._copyFile(
-      'firebase-functions.function.json',
-      'function.json'
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
     );
     this._copyFile(
       'dialogflow.firebase-functions.javascript.package.json',
@@ -294,8 +300,15 @@ module.exports = class extends Generator {
 
   _writeForDialogflowFirebaseFunctionsTypescript() {
     this._copyFile(
-      'firebase-functions.function.json',
-      'function.json'
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
     );
     this._copyFile(
       'dialogflow.firebase-functions.typescript.package.json',
@@ -412,8 +425,15 @@ module.exports = class extends Generator {
 
   _writeForActionsSdkFirebaseFunctionsJavascript() {
     this._copyFile(
-      'firebase-functions.function.json',
-      'function.json'
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
     );
     this._copyFile(
       'actions-sdk.action.json',
@@ -434,8 +454,15 @@ module.exports = class extends Generator {
 
   _writeForActionsSdkFirebaseFunctionsTypescript() {
     this._copyFile(
-      'firebase-functions.function.json',
-      'function.json'
+      'firebase-functions.firebase.json',
+      'firebase.json'
+    );
+    this._copyFile(
+      'firebase-functions.firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
     );
     this._copyFile(
       'actions-sdk.action.json',
