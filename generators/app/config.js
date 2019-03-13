@@ -33,7 +33,8 @@ module.exports = {
       }
     },
     'Sample': {
-      'CodelabLevel1': '../sample-codelablevel1'
+      'CodelabLevel1': '../sample-codelablevel1',
+      'CodelabLevel2': '../sample-codelablevel2'
     }
   },
   options: {
@@ -86,6 +87,12 @@ module.exports = {
       '[Codelab Level 1]',
       'Open the Actions on Google Codelab Level 1 page from the URL below:',
       'https://codelabs.developers.google.com/codelabs/actions-1/'
+    ],
+    'CodelabLevel2': [
+      '',
+      '[Codelab Level 2]',
+      'Open the Actions on Google Codelab Level 2 page from the URL below:',
+      'https://codelabs.developers.google.com/codelabs/actions-2/'
     ]
   }
 };
