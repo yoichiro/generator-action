@@ -87,19 +87,40 @@ module.exports = {
       '',
       '[Codelab Level 1]',
       'Open the Actions on Google Codelab Level 1 page from the URL below:',
-      'https://codelabs.developers.google.com/codelabs/actions-1/'
+      '',
+      'https://codelabs.developers.google.com/codelabs/actions-1/',
+      '',
+      '[Deploying Your Fulfillment]',
+      'To deploy your fulfillment, do the following:',
+      '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
+      '2) Execute: `cd functions`',
+      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
     ],
     'CodelabLevel2': [
       '',
       '[Codelab Level 2]',
       'Open the Actions on Google Codelab Level 2 page from the URL below:',
-      'https://codelabs.developers.google.com/codelabs/actions-2/'
+      '',
+      'https://codelabs.developers.google.com/codelabs/actions-2/',
+      '',
+      '[Deploying Your Fulfillment]',
+      'To deploy your fulfillment, do the following:',
+      '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
+      '2) Execute: `cd functions`',
+      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
     ],
     'CodelabLevel3': [
       '',
       '[Codelab Level 3]',
       'Open the Actions on Google Codelab Level 3 page from the URL below:',
-      'https://codelabs.developers.google.com/codelabs/actions-3/'
+      '',
+      'https://codelabs.developers.google.com/codelabs/actions-3/',
+      '',
+      '[Deploying Your Fulfillment]',
+      'To deploy your fulfillment, do the following:',
+      '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
+      '2) Execute: `cd functions`',
+      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
     ]
   }
 };
