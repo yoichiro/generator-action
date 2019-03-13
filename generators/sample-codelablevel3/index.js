@@ -31,6 +31,13 @@ module.exports = class extends Base {
       'package.json',
       'functions/package.json'
     );
+    this._copyFile(
+      'firebaserc',
+      '.firebaserc',
+      {
+        actionProjectId: this.answers.actionProjectId
+      }
+    );
   }
 
 };

@@ -11,7 +11,8 @@ describe('generators:app', () => {
       .run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         'actionType': 'Sample',
-        'sampleType': 'CodelabLevel1'
+        'sampleType': 'CodelabLevel1',
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -19,7 +20,8 @@ describe('generators:app', () => {
           'functions/index.js',
           'functions/.eslintrc.json',
           'firebase.json',
-          'codelab-level-one.zip'
+          'codelab-level-one.zip',
+          '.firebaserc'
         ]);
       });
   });
@@ -29,7 +31,8 @@ describe('generators:app', () => {
       .run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         'actionType': 'Sample',
-        'sampleType': 'CodelabLevel2'
+        'sampleType': 'CodelabLevel2',
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -37,7 +40,8 @@ describe('generators:app', () => {
           'functions/index.js',
           'functions/.eslintrc.json',
           'firebase.json',
-          'codelab-level-two.zip'
+          'codelab-level-two.zip',
+          '.firebaserc'
         ]);
       });
   });
@@ -47,7 +51,8 @@ describe('generators:app', () => {
       .run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         'actionType': 'Sample',
-        'sampleType': 'CodelabLevel3'
+        'sampleType': 'CodelabLevel3',
+        'actionProjectId': 'actionProjectId1'
       })
       .then(() => {
         assert.file([
@@ -55,7 +60,8 @@ describe('generators:app', () => {
           'functions/index.js',
           'functions/.eslintrc.json',
           'firebase.json',
-          'codelab-level-three.zip'
+          'codelab-level-three.zip',
+          '.firebaserc'
         ]);
       });
   });

@@ -66,6 +66,12 @@ module.exports = class extends Generator {
               value: 'CodelabLevel3'
             }
           ]
+        },
+        {
+          type: 'input',
+          name: 'actionProjectId',
+          message: 'What is your project ID?',
+          default: '__TODO:YOUR_PROJECT_ID__'
         }
       ]));
     } else {
