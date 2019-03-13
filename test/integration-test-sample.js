@@ -42,4 +42,22 @@ describe('generators:app', () => {
       });
   });
 
+  it('Sample, Codelab Level 3', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Sample',
+        'sampleType': 'CodelabLevel3'
+      })
+      .then(() => {
+        assert.file([
+          'functions/package.json',
+          'functions/index.js',
+          'functions/.eslintrc.json',
+          'firebase.json',
+          'codelab-level-three.zip'
+        ]);
+      });
+  });
+
 });
