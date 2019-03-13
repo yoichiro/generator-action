@@ -80,6 +80,12 @@ module.exports = {
       'To register your action package to Actions on Google, do the following:',
       '1) Replace the <YOUR_FULFILLMENT_URL> with yours in action.json file.',
       '2) Execute: `gactions update --action_package action.json --project <YOUR_ACTION_PROJECT_ID>`'
+    ],
+    'CodelabLevel1': [
+      '',
+      '[Codelab Level 1]',
+      'Open the Actions on Google Codelab Level 1 page from the URL below:',
+      'https://codelabs.developers.google.com/codelabs/actions-1/'
     ]
   }
 };

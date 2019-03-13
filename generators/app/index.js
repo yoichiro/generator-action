@@ -178,17 +178,19 @@ module.exports = class extends Generator {
       return;
     }
     this.log.ok('All files have been generated.');
-    if (this.answers.actionType !== 'Sample') {
-      let messages = [];
+    let messages = [];
+    if (this.answers.actionType === 'Sample') {
+      messages = messages.concat(config.endMessages[this.answers.sampleType]);
+    } else {
       messages = messages.concat(config.endMessages[this.answers.cloudService]);
       if (this.answers.actionType === 'Actions SDK') {
         messages = messages.concat(config.endMessages['Actions SDK']);
       }
-      messages.forEach(message => {
-        this.log(message);
-      });
     }
-    this.log.writeln();
+    messages.forEach(message => {
+      this.log(message);
+    });
+  this.log.writeln();
     this.log('Have fun!');
   }
 
