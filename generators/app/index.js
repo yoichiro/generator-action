@@ -38,70 +38,98 @@ module.exports = class extends Generator {
           {
             name: 'Dialogflow with Multivocal',
             value: 'Multivocal'
+          },
+          {
+            name: 'Sample Action',
+            value: 'Sample'
           }
         ]
       }
     ]);
-    const cloudServices = [];
-    if (this.answers.actionType === 'Multivocal') {
-      cloudServices.push('Firebase Functions');
-      cloudServices.push('Google Cloud Functions');
-    } else {
-      cloudServices.push('Firebase Functions');
-      cloudServices.push('Google Cloud Functions');
-      cloudServices.push('Google AppEngine');
-    }
-    Object.assign(this.answers, await this.prompt([
-      {
-        type: 'list',
-        name: 'cloudService',
-        message: 'Which cloud service do you want to deploy for your action?',
-        choices: cloudServices
-      }
-    ]));
-    const languages = [];
-    if (this.answers.cloudService === 'Firebase Functions' ||
-        this.answers.cloudService === 'Google Cloud Functions') {
-      languages.push('JavaScript');
-      languages.push('TypeScript');
-    } else if (this.answers.cloudService === 'Google AppEngine') {
-      languages.push('Java');
-    }
-    if (languages.length > 1) {
+    if (this.answers.actionType === 'Sample') {
       Object.assign(this.answers, await this.prompt([
         {
           type: 'list',
-          name: 'language',
-          message: 'Which language do you want to use for your action?',
-          choices: languages
+          name: 'sampleType',
+          message: 'Which type of the sample action do you want to create?',
+          choices: [
+            {
+              name: 'Actions on Google Codelab (Level 1)',
+              value: 'CodelabLevel1'
+            },
+            {
+              name: 'Actions on Google Codelab (Level 2)',
+              value: 'CodelabLevel2'
+            },
+            {
+              name: 'Actions on Google Codelab (Level 3)',
+              value: 'CodelabLevel3'
+            }
+          ]
         }
       ]));
     } else {
-      this.answers.language = languages[0]
-    }
-    if (this.answers.cloudService === 'Firebase Functions' ||
-        (this.answers.actionType === 'Actions SDK' &&
-          this.answers.cloudService === 'Google Cloud Functions')) {
+      const cloudServices = [];
+      if (this.answers.actionType === 'Multivocal') {
+        cloudServices.push('Firebase Functions');
+        cloudServices.push('Google Cloud Functions');
+      } else {
+        cloudServices.push('Firebase Functions');
+        cloudServices.push('Google Cloud Functions');
+        cloudServices.push('Google AppEngine');
+      }
       Object.assign(this.answers, await this.prompt([
         {
-          type: 'input',
-          name: 'actionProjectId',
-          message: 'What is your project ID?',
-          default: '__TODO:YOUR_PROJECT_ID__'
+          type: 'list',
+          name: 'cloudService',
+          message: 'Which cloud service do you want to deploy for your action?',
+          choices: cloudServices
         }
       ]));
-    }
-    if (this.answers.cloudService === 'Google AppEngine') {
-      Object.assign(this.answers, await this.prompt([
-        {
-          type: 'input',
-          name: 'packageName',
-          message: 'What is a full package name for your action\'s classes?',
-          validate: packageName => {
-            return packageName !== '';
+      const languages = [];
+      if (this.answers.cloudService === 'Firebase Functions' ||
+          this.answers.cloudService === 'Google Cloud Functions') {
+        languages.push('JavaScript');
+        languages.push('TypeScript');
+      } else if (this.answers.cloudService === 'Google AppEngine') {
+        languages.push('Java');
+      }
+      if (languages.length > 1) {
+        Object.assign(this.answers, await this.prompt([
+          {
+            type: 'list',
+            name: 'language',
+            message: 'Which language do you want to use for your action?',
+            choices: languages
           }
-        }
-      ]));
+        ]));
+      } else {
+        this.answers.language = languages[0]
+      }
+      if (this.answers.cloudService === 'Firebase Functions' ||
+          (this.answers.actionType === 'Actions SDK' &&
+            this.answers.cloudService === 'Google Cloud Functions')) {
+        Object.assign(this.answers, await this.prompt([
+          {
+            type: 'input',
+            name: 'actionProjectId',
+            message: 'What is your project ID?',
+            default: '__TODO:YOUR_PROJECT_ID__'
+          }
+        ]));
+      }
+      if (this.answers.cloudService === 'Google AppEngine') {
+        Object.assign(this.answers, await this.prompt([
+          {
+            type: 'input',
+            name: 'packageName',
+            message: 'What is a full package name for your action\'s classes?',
+            validate: packageName => {
+              return packageName !== '';
+            }
+          }
+        ]));
+      }
     }
   }
 
@@ -113,51 +141,14 @@ module.exports = class extends Generator {
   }
 
   default() {
-    if (this.answers.actionType === 'Actions SDK') {
-      if (this.answers.cloudService === 'Firebase Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../actionssdk-firebasefunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../actionssdk-firebasefunctions-javascript');
-        }
-      } else if (this.answers.cloudService === 'Google Cloud Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../actionssdk-googlecloudfunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../actionssdk-googlecloudfunctions-javascript');
-        }
-      } else if (this.answers.cloudService === 'Google AppEngine') {
-        this._invokeSubGenerator('../actionssdk-googleappengine-java');
-      }
-    } else if (this.answers.actionType === 'Dialogflow') {
-      if (this.answers.cloudService === 'Firebase Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../dialogflow-firebasefunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../dialogflow-firebasefunctions-javascript');
-        }
-      } else if (this.answers.cloudService === 'Google Cloud Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../dialogflow-googlecloudfunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../dialogflow-googlecloudfunctions-javascript');
-        }
-      } else if (this.answers.cloudService === 'Google AppEngine') {
-        this._invokeSubGenerator('../dialogflow-googleappengine-java');
-      }
-    } else if (this.answers.actionType === "Multivocal") {
-      if (this.answers.cloudService === 'Firebase Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../multivocal-firebasefunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../multivocal-firebasefunctions-javascript');
-        }
-      } else if (this.answers.cloudService === 'Google Cloud Functions') {
-        if (this.answers.language === 'TypeScript') {
-          this._invokeSubGenerator('../multivocal-googlecloudfunctions-typescript');
-        } else if (this.answers.language === 'JavaScript') {
-          this._invokeSubGenerator('../multivocal-googlecloudfunctions-javascript');
-        }
+    if (this.answers.actionType === 'Sample') {
+      this._invokeSubGenerator(config.generatorMap[this.answers.actionType][this.answers.sampleType]);
+    } else {
+      const cloudServiceData = config.generatorMap[this.answers.actionType][this.answers.cloudService];
+      if (typeof cloudServiceData === 'object') {
+        this._invokeSubGenerator(cloudServiceData[this.answers.language]);
+      } else {
+        this._invokeSubGenerator(cloudServiceData);
       }
     }
   }
@@ -187,14 +178,16 @@ module.exports = class extends Generator {
       return;
     }
     this.log.ok('All files have been generated.');
-    let messages = [];
-    messages = messages.concat(config.endMessages[this.answers.cloudService]);
-    if (this.answers.actionType === 'Actions SDK') {
-      messages = messages.concat(config.endMessages['Actions SDK']);
+    if (this.answers.actionType !== 'Sample') {
+      let messages = [];
+      messages = messages.concat(config.endMessages[this.answers.cloudService]);
+      if (this.answers.actionType === 'Actions SDK') {
+        messages = messages.concat(config.endMessages['Actions SDK']);
+      }
+      messages.forEach(message => {
+        this.log(message);
+      });
     }
-    messages.forEach(message => {
-      this.log(message);
-    });
     this.log.writeln();
     this.log('Have fun!');
   }

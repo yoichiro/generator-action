@@ -1,4 +1,41 @@
 module.exports = {
+  generatorMap: {
+    'Actions SDK': {
+      'Firebase Functions': {
+        'TypeScript': '../actionssdk-firebasefunctions-typescript',
+        'JavaScript': '../actionssdk-firebasefunctions-javascript'
+      },
+      'Google Cloud Functions': {
+        'TypeScript': '../actionssdk-googlecloudfunctions-typescript',
+        'JavaScript': '../actionssdk-googlecloudfunctions-javascript'
+      },
+      'Google AppEngine': '../actionssdk-googleappengine-java'
+    },
+    'Dialogflow': {
+      'Firebase Functions': {
+        'TypeScript': '../dialogflow-firebasefunctions-typescript',
+        'JavaScript': '../dialogflow-firebasefunctions-javascript'
+      },
+      'Google Cloud Functions': {
+        'TypeScript': '../dialogflow-googlecloudfunctions-typescript',
+        'JavaScript': '../dialogflow-googlecloudfunctions-javascript'
+      },
+      'Google AppEngine': '../dialogflow-googleappengine-java'
+    },
+    'Multivocal': {
+      'Firebase Functions': {
+        'TypeScript': '../multivocal-firebasefunctions-typescript',
+        'JavaScript': '../multivocal-firebasefunctions-javascript'
+      },
+      'Google Cloud Functions': {
+        'TypeScript': '../multivocal-googlecloudfunctions-typescript',
+        'JavaScript': '../multivocal-googlecloudfunctions-javascript'
+      }
+    },
+    'Sample': {
+      'CodelabLevel1': '../sample-codelablevel1'
+    }
+  },
   options: {
     'skip-welcome-message': {
       desc: 'Skips the welcome message',
