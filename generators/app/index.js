@@ -83,6 +83,7 @@ module.exports = class extends Generator {
         cloudServices.push('Firebase Functions');
         cloudServices.push('Google Cloud Functions');
         cloudServices.push('Google AppEngine');
+        cloudServices.push('Azure Functions');
       }
       Object.assign(this.answers, await this.prompt([
         {
@@ -99,6 +100,8 @@ module.exports = class extends Generator {
         languages.push('TypeScript');
       } else if (this.answers.cloudService === 'Google AppEngine') {
         languages.push('Java');
+      } else if (this.answers.cloudService === 'Azure Functions') {
+        languages.push('JavaScript');
       }
       if (languages.length > 1) {
         Object.assign(this.answers, await this.prompt([
@@ -162,10 +165,16 @@ module.exports = class extends Generator {
   install() {
     if (!this.options['skip-install']) {
       if (this.answers.cloudService === 'Firebase Functions' ||
-          this.answers.cloudService === 'Google Cloud Functions') {
+          this.answers.cloudService === 'Google Cloud Functions' ||
+          this.answers.cloudService === 'Azure Functions') {
         const hasYarn = commandExists('yarn');
         const hasNpm = commandExists('npm');
-        const cwd = this.answers.cloudService === 'Firebase Functions' ? 'functions' : '.';
+        let cwd = '.';
+        if (this.answers.cloudService === 'Firebase Functions') {
+          cwd = 'functions';
+        } else if (this.answers.cloudService === 'Azure Functions') {
+          cwd = 'fulfillment';
+        }
         if (hasYarn) {
           this.log.invoke('Execute `yarn install`');
           this.spawnCommandSync('yarn', ['install'], { cwd });

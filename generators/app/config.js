@@ -9,7 +9,8 @@ module.exports = {
         'TypeScript': '../actionssdk-googlecloudfunctions-typescript',
         'JavaScript': '../actionssdk-googlecloudfunctions-javascript'
       },
-      'Google AppEngine': '../actionssdk-googleappengine-java'
+      'Google AppEngine': '../actionssdk-googleappengine-java',
+      'Azure Functions': '../actionssdk-azurefunctions-javascript'
     },
     'Dialogflow': {
       'Firebase Functions': {
@@ -20,7 +21,8 @@ module.exports = {
         'TypeScript': '../dialogflow-googlecloudfunctions-typescript',
         'JavaScript': '../dialogflow-googlecloudfunctions-javascript'
       },
-      'Google AppEngine': '../dialogflow-googleappengine-java'
+      'Google AppEngine': '../dialogflow-googleappengine-java',
+      'Azure Functions': '../dialogflow-azurefunctions-javascript'
     },
     'Multivocal': {
       'Firebase Functions': {
@@ -58,30 +60,39 @@ module.exports = {
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
-      '2) Execute: `cd functions`',
-      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
+      '2) Change the directory: `cd functions`',
+      '3) Deploy: `npm run deploy` or `yarn deploy`'
     ],
     'Google Cloud Functions': [
       '',
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`',
-      '2) Execute to deploy: `npm run deploy` or `yarn deploy`'
+      '2) Deploy: `npm run deploy` or `yarn deploy`'
     ],
     'Google AppEngine': [
       '',
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Google Cloud project: `gcloud config set project <YOUR_PROJECT_ID>`',
-      '2) Execute to build: `gradlew war`',
-      '3) Execute to deploy: `gradlew appengineDeploy`'
+      '2) Build: `gradlew war`',
+      '3) Deploy: `gradlew appengineDeploy`'
+    ],
+    'Azure Functions': [
+      '',
+      '[Azure Functions]',
+      'To deploy your fulfillment, do the following:',
+      '1) Create a resource group: `az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION_NAME>`',
+      '2) Create a storage account: `az storae account create --name <STORAGE_ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --location <LOCATION_NAME> -sku Standard_LRS`',
+      '3) Create a function app: `az functionapp create --resource-group <RESOURCE_GROUP_NAME> --consumption-plan-location <LOCATION_NAME> --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --runtime node`',
+      '4) Deploy: `func azure functionapp publish <FUNCTION_APP_NAME>`'
     ],
     'Actions SDK': [
       '',
       '[Registering Your Action Package]',
       'To register your action package to Actions on Google, do the following:',
       '1) Replace the <YOUR_FULFILLMENT_URL> with yours in action.json file.',
-      '2) Execute: `gactions update --action_package action.json --project <YOUR_ACTION_PROJECT_ID>`'
+      '2) Register: `gactions update --action_package action.json --project <YOUR_ACTION_PROJECT_ID>`'
     ],
     'CodelabLevel1': [
       '',
@@ -93,8 +104,8 @@ module.exports = {
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
-      '2) Execute: `cd functions`',
-      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
+      '2) Change the directory: `cd functions`',
+      '3) Deploy: `npm run deploy` or `yarn deploy`'
     ],
     'CodelabLevel2': [
       '',
@@ -106,8 +117,8 @@ module.exports = {
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
-      '2) Execute: `cd functions`',
-      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
+      '2) Change the directory: `cd functions`',
+      '3) Deploy: `npm run deploy` or `yarn deploy`'
     ],
     'CodelabLevel3': [
       '',
@@ -119,8 +130,8 @@ module.exports = {
       '[Deploying Your Fulfillment]',
       'To deploy your fulfillment, do the following:',
       '1) Set Firebsae project: `firebase use <YOUR_PROJECT_ID>`',
-      '2) Execute: `cd functions`',
-      '3) Execute to deploy: `npm run deploy` or `yarn deploy`'
+      '2) Change the directory: `cd functions`',
+      '3) Deploy: `npm run deploy` or `yarn deploy`'
     ]
   }
 };

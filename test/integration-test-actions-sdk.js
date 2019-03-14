@@ -110,4 +110,26 @@ describe('generators:app', () => {
       });
   });
 
+  it('Actions SDK, Azure Functions, JavaScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Actions SDK',
+        'cloudService': 'Azure Functions'
+      })
+      .then(() => {
+        assert.file([
+          'host.json',
+          'local.settings.json',
+          'proxies.json',
+          '.gitignore',
+          'action.json',
+          'fulfillment/index.js',
+          'fulfillment/package.json',
+          'fulfillment/sample.dat',
+          'fulfillment/function.json'
+        ]);
+      });
+  });
+
 });
