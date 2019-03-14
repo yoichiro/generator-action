@@ -1,6 +1,5 @@
-const Generator = require('yeoman-generator');
 const path = require('path');
-const Base = require('../../utils/base');
+const Base = require(path.join(__dirname, '../../utils/base'));
 
 module.exports = class extends Base {
 
