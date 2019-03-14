@@ -11,6 +11,12 @@ Also, you can create a complete code set for Actions on Google Codelab Level 1, 
 [![NPM Version](https://img.shields.io/npm/v/generator-action.svg)](https://www.npmjs.org/package/generator-action)
 [![CircleCI](https://circleci.com/gh/yoichiro/generator-action.svg?style=svg)](https://circleci.com/gh/yoichiro/generator-action)
 
+## Prerequisite
+
+You need to install the following:
+
+* NodeJS 8 or higher.
+
 ## Getting Started
 
 ```bash
