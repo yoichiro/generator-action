@@ -1,0 +1,9 @@
+{
+  "name": "fulfillment",
+  "main": "index.js",
+  "dependencies": {
+    "actions-on-google": "^2.6.0",
+    "azure-function-express": "^2.0.0",
+    "express": "^4.16.4"
+  }
+}

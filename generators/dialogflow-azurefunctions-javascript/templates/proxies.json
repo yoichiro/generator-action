@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "proxy1": {
+      "matchCondition": {
+        "methods": [
+          "POST"
+        ],
+        "route": "/api/fulfillment"
+      },
+      "backendUri": "https://localhost/api/fulfillment",
+      "requestOverrides": {
+        "backend.request.headers.Accept-Charset": "utf-8"
+      }
+    }
+  }
+}

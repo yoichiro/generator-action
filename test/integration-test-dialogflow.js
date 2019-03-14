@@ -101,4 +101,25 @@ describe('generators:app', () => {
       });
   });
 
+  it('Dialogflow, Azure Functions, JavaScript', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Dialogflow',
+        'cloudService': 'Azure Functions'
+      })
+      .then(() => {
+        assert.file([
+          'host.json',
+          'local.settings.json',
+          'proxies.json',
+          '.gitignore',
+          'fulfillment/index.js',
+          'fulfillment/package.json',
+          'fulfillment/sample.dat',
+          'fulfillment/function.json'
+        ]);
+      });
+  });
+
 });
