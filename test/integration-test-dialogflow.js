@@ -122,4 +122,21 @@ describe('generators:app', () => {
       });
   });
 
+  it('Dialogflow, Azure Webapps, Maven', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Dialogflow',
+        'cloudService': 'Azure Web Apps',
+        'packageName': 'package1.name1'
+      })
+      .then(() => {
+        assert.file([
+          'pom.xml',
+          'src/main/java/package1/name1/FulfillmentApp.java',
+          'src/main/java/package1/name1/FulfillmentServlet.java'
+        ]);
+      });
+  });
+
 });

@@ -10,7 +10,8 @@ module.exports = {
         'JavaScript': '../actionssdk-googlecloudfunctions-javascript'
       },
       'Google AppEngine': '../actionssdk-googleappengine-java',
-      'Azure Functions': '../actionssdk-azurefunctions-javascript'
+      'Azure Functions': '../actionssdk-azurefunctions-javascript',
+      'Azure Web Apps': '../actionssdk-azurewebapps-maven'
     },
     'Dialogflow': {
       'Firebase Functions': {
@@ -22,7 +23,8 @@ module.exports = {
         'JavaScript': '../dialogflow-googlecloudfunctions-javascript'
       },
       'Google AppEngine': '../dialogflow-googleappengine-java',
-      'Azure Functions': '../dialogflow-azurefunctions-javascript'
+      'Azure Functions': '../dialogflow-azurefunctions-javascript',
+      'Azure Web Apps': '../dialogflow-azurewebapps-maven'
     },
     'Multivocal': {
       'Firebase Functions': {
@@ -86,6 +88,13 @@ module.exports = {
       '2) Create a storage account: `az storae account create --name <STORAGE_ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --location <LOCATION_NAME> -sku Standard_LRS`',
       '3) Create a function app: `az functionapp create --resource-group <RESOURCE_GROUP_NAME> --consumption-plan-location <LOCATION_NAME> --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --runtime node`',
       '4) Deploy: `func azure functionapp publish <FUNCTION_APP_NAME>`'
+    ],
+    'Azure Web Apps': [
+      '',
+      '[Azure Webapps]',
+      'To deploy your fulfillment, do the following:',
+      '1) Create a resource group: `az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION_NAME>`',
+      '2) Deploy: `mvn package azure-webapp:deploy`'
     ],
     'Actions SDK': [
       '',

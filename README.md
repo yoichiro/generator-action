@@ -3,7 +3,9 @@
 Yeoman Action Generator for Google Assistant creates everything you need to get started with action development. You can choose the following implementations:
 
 * Action Type: Actions SDK, Dialogflow or Multivocal.
-* Cloud Service: Firebase Functions, Google Cloud Functions, Google AppEngine and Azure Functions.
+* Cloud Service:
+  * Firebase Functions, Google Cloud Functions and Google AppEngine
+  * Azure Functions and Azure Web Apps
 * Language: JavaScript, TypeScript or Java.
 
 Also, you can create a complete code set for Actions on Google Codelab Level 1, 2 and 3.
@@ -72,6 +74,14 @@ If Actions SDK is selected, `action.json` Action Package file is generated. It c
 You can generate a project with a fulfillment code deployed to Azure Functions. Currently, you can choose JavaScript only as source code language.
 
 If Actions SDK or Dialogflow is selected as Action Type, the generated code depends on the [Actions on Google Client Library for NodeJS](https://github.com/actions-on-google/actions-on-google-nodejs). A different code is generated dependning on your selection from Actions SDK or Dialogflow.
+
+If Actions SDK is selected, `action.json` Action Package file is generated. It can be used to register actions with `gactions` command.
+
+### Azure Web Apps
+
+You can generate a project with a fulfillment code deployed to Azure Web Apps. Currently, you can choose Java only as source code language.
+
+If Actions SDK or Dialogflow is selected as Action Type, the generated code depends on the [Actions on Google Client Library for Java](https://github.com/actions-on-google/actions-on-google-java). A different code is generated dependning on your selection from Actions SDK or Dialogflow.
 
 If Actions SDK is selected, `action.json` Action Package file is generated. It can be used to register actions with `gactions` command.
 
