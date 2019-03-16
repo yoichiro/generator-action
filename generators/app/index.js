@@ -84,6 +84,7 @@ module.exports = class extends Generator {
         cloudServices.push('Google Cloud Functions');
         cloudServices.push('Google AppEngine');
         cloudServices.push('Azure Functions');
+        cloudServices.push('Azure Web Apps');
       }
       Object.assign(this.answers, await this.prompt([
         {
@@ -102,6 +103,8 @@ module.exports = class extends Generator {
         languages.push('Java');
       } else if (this.answers.cloudService === 'Azure Functions') {
         languages.push('JavaScript');
+      } else if (this.answers.cloudService === 'Azure Web Apps') {
+        languages.push('Java');
       }
       if (languages.length > 1) {
         Object.assign(this.answers, await this.prompt([
@@ -127,7 +130,8 @@ module.exports = class extends Generator {
           }
         ]));
       }
-      if (this.answers.cloudService === 'Google AppEngine') {
+      if (this.answers.cloudService === 'Google AppEngine' ||
+          this.answers.cloudService === 'Azure Web Apps') {
         Object.assign(this.answers, await this.prompt([
           {
             type: 'input',
@@ -136,6 +140,40 @@ module.exports = class extends Generator {
             validate: packageName => {
               return packageName !== '';
             }
+          }
+        ]));
+      }
+      if (this.answers.cloudService === 'Azure Web Apps') {
+        Object.assign(this.answers, await this.prompt([
+          {
+            type: 'input',
+            name: 'artifactId',
+            message: 'What is an Artifact ID for your webapp?',
+            default: '__TODO:YOUR_ARTIFACT_ID__'
+          },
+          {
+            type: 'input',
+            name: 'resourceGroupName',
+            message: 'What is a resource group name for your webapp?',
+            default: '__TODO:RESOURCE_GROUP_NAME__'
+          },
+          {
+            type: 'input',
+            name: 'appName',
+            message: 'What is an app name for your webapp?',
+            default: '__TODO:YOUR_APP_NAME__'
+          },
+          {
+            type: 'input',
+            name: 'locationName',
+            message: 'What is a location name for your webapp?',
+            default: '__TODO:YOUR_LOCATION_NAME__'
+          },
+          {
+            type: 'input',
+            name: 'pricingTierName',
+            message: 'What is a pricing tier name for your webapp?',
+            default: '__TODO:YOUR_PRICING_TIER_NAME__'
           }
         ]));
       }
@@ -198,11 +236,14 @@ module.exports = class extends Generator {
       messages = messages.concat(config.endMessages[this.answers.sampleType]);
     } else {
       messages = messages.concat(config.endMessages[this.answers.cloudService]);
-      if (this.answers.actionType === 'Actions SDK') {
-        messages = messages.concat(config.endMessages['Actions SDK']);
+      if (!messages instanceof Array) {
+        messages = messages[this.answers.language];
       }
     }
-    messages.forEach(message => {
+    if (this.answers.actionType === 'Actions SDK') {
+      messages = messages.concat(config.endMessages['Actions SDK']);
+    }
+  messages.forEach(message => {
       this.log(message);
     });
   this.log.writeln();
