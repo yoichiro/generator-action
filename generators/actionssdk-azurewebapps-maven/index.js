@@ -21,7 +21,6 @@ module.exports = class extends Base {
       'pom.xml',
       {
         packageName: this.answers.packageName,
-        artifactId: this.answers.artifactId,
         resourceGroupName: this.answers.resourceGroupName,
         appName: this.answers.appName,
         locationName: this.answers.locationName,

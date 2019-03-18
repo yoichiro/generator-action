@@ -153,16 +153,6 @@ module.exports = class extends Generator {
         ]));
       }
       if (this.answers.cloudService === 'Azure Web Apps') {
-        if (this.answers.language === 'Maven') {
-          Object.assign(this.answers, await this.prompt([
-            {
-              type: 'input',
-              name: 'artifactId',
-              message: 'What is an Artifact ID for your webapp?',
-              default: '__TODO:YOUR_ARTIFACT_ID__'
-            }
-          ]));
-        }
         Object.assign(this.answers, await this.prompt([
           {
             type: 'input',
