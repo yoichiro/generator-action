@@ -138,12 +138,36 @@ describe('generators:app', () => {
       .withPrompts({
         'actionType': 'Actions SDK',
         'cloudService': 'Azure Web Apps',
+        'language': 'Maven',
         'packageName': 'package1.name1'
       })
       .then(() => {
         assert.file([
           'pom.xml',
           'action.json',
+          'src/main/java/package1/name1/FulfillmentApp.java',
+          'src/main/java/package1/name1/FulfillmentServlet.java'
+        ]);
+      });
+  });
+
+  it('Actions SDK, Azure Webapps, Gradle', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Actions SDK',
+        'cloudService': 'Azure Web Apps',
+        'language': 'Gradle',
+        'packageName': 'package1.name1'
+      })
+      .then(() => {
+        assert.file([
+          'action.json',
+          'gradlew',
+          'gradlew.bat',
+          'build.gradle',
+          'gradle/wrapper/gradle-wrapper.properties',
+          'gradle/wrapper/gradle-wrapper.jar',
           'src/main/java/package1/name1/FulfillmentApp.java',
           'src/main/java/package1/name1/FulfillmentServlet.java'
         ]);

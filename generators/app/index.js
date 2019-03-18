@@ -104,7 +104,16 @@ module.exports = class extends Generator {
       } else if (this.answers.cloudService === 'Azure Functions') {
         languages.push('JavaScript');
       } else if (this.answers.cloudService === 'Azure Web Apps') {
-        languages.push('Java');
+        languages.push(
+          {
+            name: 'Java (Maven)',
+            value: 'Maven'
+          },
+          {
+            name: 'Java (Gradle)',
+            value: 'Gradle'
+          }
+        );
       }
       if (languages.length > 1) {
         Object.assign(this.answers, await this.prompt([
@@ -144,13 +153,17 @@ module.exports = class extends Generator {
         ]));
       }
       if (this.answers.cloudService === 'Azure Web Apps') {
+        if (this.answers.language === 'Maven') {
+          Object.assign(this.answers, await this.prompt([
+            {
+              type: 'input',
+              name: 'artifactId',
+              message: 'What is an Artifact ID for your webapp?',
+              default: '__TODO:YOUR_ARTIFACT_ID__'
+            }
+          ]));
+        }
         Object.assign(this.answers, await this.prompt([
-          {
-            type: 'input',
-            name: 'artifactId',
-            message: 'What is an Artifact ID for your webapp?',
-            default: '__TODO:YOUR_ARTIFACT_ID__'
-          },
           {
             type: 'input',
             name: 'resourceGroupName',
@@ -235,9 +248,11 @@ module.exports = class extends Generator {
     if (this.answers.actionType === 'Sample') {
       messages = messages.concat(config.endMessages[this.answers.sampleType]);
     } else {
-      messages = messages.concat(config.endMessages[this.answers.cloudService]);
-      if (!messages instanceof Array) {
-        messages = messages[this.answers.language];
+      const cloudServiceMessages = config.endMessages[this.answers.cloudService];
+      if (cloudServiceMessages instanceof Array) {
+        messages = messages.concat(cloudServiceMessages);
+      } else {
+        messages = cloudServiceMessages[this.answers.language];
       }
     }
     if (this.answers.actionType === 'Actions SDK') {

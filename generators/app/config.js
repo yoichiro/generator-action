@@ -11,7 +11,10 @@ module.exports = {
       },
       'Google AppEngine': '../actionssdk-googleappengine-java',
       'Azure Functions': '../actionssdk-azurefunctions-javascript',
-      'Azure Web Apps': '../actionssdk-azurewebapps-maven'
+      'Azure Web Apps': {
+        'Maven': '../actionssdk-azurewebapps-maven',
+        'Gradle': '../actionssdk-azurewebapps-gradle'
+      }
     },
     'Dialogflow': {
       'Firebase Functions': {
@@ -24,7 +27,10 @@ module.exports = {
       },
       'Google AppEngine': '../dialogflow-googleappengine-java',
       'Azure Functions': '../dialogflow-azurefunctions-javascript',
-      'Azure Web Apps': '../dialogflow-azurewebapps-maven'
+      'Azure Web Apps': {
+        'Maven': '../dialogflow-azurewebapps-maven',
+        'Gradle': '../actionssdk-azurewebapps-gradle'
+      }
     },
     'Multivocal': {
       'Firebase Functions': {
@@ -89,13 +95,22 @@ module.exports = {
       '3) Create a function app: `az functionapp create --resource-group <RESOURCE_GROUP_NAME> --consumption-plan-location <LOCATION_NAME> --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --runtime node`',
       '4) Deploy: `func azure functionapp publish <FUNCTION_APP_NAME>`'
     ],
-    'Azure Web Apps': [
-      '',
-      '[Azure Webapps]',
-      'To deploy your fulfillment, do the following:',
-      '1) Create a resource group: `az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION_NAME>`',
-      '2) Deploy: `mvn package azure-webapp:deploy`'
-    ],
+    'Azure Web Apps': {
+      'Maven': [
+        '',
+        '[Azure Webapps]',
+        'To deploy your fulfillment, do the following:',
+        '1) Create a resource group: `az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION_NAME>`',
+        '2) Deploy: `mvn package azure-webapp:deploy`'
+      ],
+      'Gradle': [
+        '',
+        '[Azure Webapps]',
+        'To deploy your fulfillment, do the following:',
+        '1) Create a resource group: `az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION_NAME>`',
+        '2) Deploy: `gradle war azureWebappDeploy`'
+      ]
+    },
     'Actions SDK': [
       '',
       '[Registering Your Action Package]',
