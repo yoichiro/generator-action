@@ -79,7 +79,7 @@ If Actions SDK is selected, `action.json` Action Package file is generated. It c
 
 ### Azure Web Apps
 
-You can generate a project with a fulfillment code deployed to Azure Web Apps. Currently, you can choose Java only as source code language.
+You can generate a project with a fulfillment code deployed to Azure Web Apps. Currently, you can choose Java only as source code language, but you can choose the build system from "Maven" or "Gradle".
 
 If Actions SDK or Dialogflow is selected as Action Type, the generated code depends on the [Actions on Google Client Library for Java](https://github.com/actions-on-google/actions-on-google-java). A different code is generated dependning on your selection from Actions SDK or Dialogflow.
 
