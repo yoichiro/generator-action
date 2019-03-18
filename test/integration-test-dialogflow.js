@@ -128,11 +128,34 @@ describe('generators:app', () => {
       .withPrompts({
         'actionType': 'Dialogflow',
         'cloudService': 'Azure Web Apps',
+        'language': 'Maven',
         'packageName': 'package1.name1'
       })
       .then(() => {
         assert.file([
           'pom.xml',
+          'src/main/java/package1/name1/FulfillmentApp.java',
+          'src/main/java/package1/name1/FulfillmentServlet.java'
+        ]);
+      });
+  });
+
+  it('Dialogflow, Azure Webapps, Gradle', () => {
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({
+        'actionType': 'Dialogflow',
+        'cloudService': 'Azure Web Apps',
+        'language': 'Gradle',
+        'packageName': 'package1.name1'
+      })
+      .then(() => {
+        assert.file([
+          'gradlew',
+          'gradlew.bat',
+          'build.gradle',
+          'gradle/wrapper/gradle-wrapper.properties',
+          'gradle/wrapper/gradle-wrapper.jar',
           'src/main/java/package1/name1/FulfillmentApp.java',
           'src/main/java/package1/name1/FulfillmentServlet.java'
         ]);
